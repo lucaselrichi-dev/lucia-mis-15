@@ -1,237 +1,739 @@
-
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Los 15 de Lucía</title>
-<style>
-:root {
-  --fondo: #080c1c;
-  --plata: #d9d9e8;
-  --texto: #f6f3ff;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: var(--fondo);
-  color: var(--texto);
-  font-family: Georgia, serif;
-  text-align: center;
-}
-section { padding: 65px 20px; }
-h1, h2 { font-weight: normal; }
-h1 { font-size: clamp(48px, 10vw, 86px); margin: 12px 0; }
-h2 { font-size: 32px; color: var(--plata); }
-p { line-height: 1.8; }
-.hero {
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 35px 20px;
-  background:
-    linear-gradient(#080c1c88, #080c1cee),
-    url("assets/fondo.jpg") center/cover;
-}
-.moon { font-size: 62px; }
-.subtitle { letter-spacing: 5px; text-transform: uppercase; }
-button, .button {
-  display: inline-block;
-  border: 1px solid var(--plata);
-  background: transparent;
-  color: var(--texto);
-  padding: 14px 24px;
-  text-decoration: none;
-  font: inherit;
-  cursor: pointer;
-  margin: 8px;
-}
-button:hover, .button:hover {
-  background: var(--plata);
-  color: var(--fondo);
-}
-.card {
-  max-width: 620px;
-  margin: 22px auto;
-  padding: 25px;
-  border: 1px solid #c7c7dc55;
-  background: #ffffff06;
-}
-.countdown {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.countdown div {
-  min-width: 72px;
-  padding: 15px 8px;
-  border: 1px solid #c7c7dc55;
-}
-.countdown strong { display: block; font-size: 28px; }
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  max-width: 700px;
-  margin: auto;
-}
-.gallery img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border: 1px solid #c7c7dc55;
-}
-footer { padding: 30px; color: #b9b9cc; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis 15 Años - Florencia | Invitación Especial</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        moon: {
+                            dark: '#0B0F19',
+                            card: '#131B2E',
+                            accent: '#1D283F',
+                            gold: '#D4AF37',
+                            goldLight: '#F3E5AB',
+                            goldDark: '#AA7C11',
+                            silver: '#E2E8F0',
+                        }
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        garamond: ['Cormorant Garamond', 'serif'],
+                        script: ['Great Vibes', 'cursive'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Glowing & Gold Text Gradients */
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF0B5 0%, #D4AF37 50%, #996515 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border-gradient {
+            border-image: linear-gradient(135deg, #D4AF37, #4A3B10, #D4AF37) 1;
+        }
+        .gold-bg-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%);
+        }
+        .gold-bg-gradient:hover {
+            background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 100%);
+        }
+        .moon-glow {
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.25);
+        }
+        .card-glow {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7), 0 0 15px rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Star Animation */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .star-twinkle {
+            animation: twinkle 3s infinite ease-in-out;
+        }
+        
+        /* Floating Animation */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+        .floating-element {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(19, 27, 46, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-moon-dark text-slate-100 font-sans antialiased selection:bg-moon-gold selection:text-moon-dark relative overflow-x-hidden min-h-screen">
 
-<header class="hero">
-  <div class="moon">☾</div>
-  <p class="subtitle">Una noche para recordar</p>
-  <p>Mis quince años</p>
-  <h1>Lucía</h1>
-  <p>Una noche mágica bajo las estrellas</p>
-  <button onclick="document.getElementById('invitacion').scrollIntoView()">
-    DESCUBRÍ LA INVITACIÓN
-  </button>
-</header>
+    <!-- Background Stars & Moon Elements -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-900/20 rounded-full blur-[120px]"></div>
+        <div class="absolute top-1/4 -right-20 w-[300px] h-[300px] bg-amber-500/10 rounded-full blur-[100px]"></div>
+        
+        <!-- SVG Stars background -->
+        <svg class="absolute inset-0 w-full h-full opacity-40" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10%" cy="15%" r="1.5" fill="#FFF" class="star-twinkle" style="animation-delay: 0s;"/>
+            <circle cx="85%" cy="10%" r="2" fill="#D4AF37" class="star-twinkle" style="animation-delay: 1s;"/>
+            <circle cx="70%" cy="25%" r="1" fill="#FFF" class="star-twinkle" style="animation-delay: 0.5s;"/>
+            <circle cx="20%" cy="45%" r="2.5" fill="#D4AF37" class="star-twinkle" style="animation-delay: 2s;"/>
+            <circle cx="90%" cy="60%" r="1.5" fill="#FFF" class="star-twinkle" style="animation-delay: 1.5s;"/>
+            <circle cx="15%" cy="75%" r="1" fill="#FFF" class="star-twinkle" style="animation-delay: 0.8s;"/>
+            <circle cx="80%" cy="85%" r="2" fill="#D4AF37" class="star-twinkle" style="animation-delay: 2.3s;"/>
+        </svg>
+    </div>
 
-<main>
-<section id="invitacion">
-  <p>✧ ✧ ✧</p>
-  <h2>Mi noche soñada</h2>
-  <p>
-    Hay momentos que se convierten en recuerdos para toda la vida.
-    Quiero compartir esta noche tan especial con las personas que quiero.
-  </p>
-  <div class="card">
-    <p>TE ESPERO PARA CELEBRAR</p>
-    <h2>Mis 15 años</h2>
-    <p id="fecha">Fecha a confirmar</p>
-    <p id="hora">Horario a confirmar</p>
-  </div>
-</section>
+    <!-- AUDIO WELCOME OVERLAY MODAL -->
+    <div id="welcome-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-moon-dark/95 backdrop-blur-md transition-opacity duration-700">
+        <div class="max-w-md w-full glass-card rounded-3xl p-8 text-center border border-moon-gold/30 moon-glow relative overflow-hidden">
+            <!-- Decorative Moon SVG Header -->
+            <div class="mb-6 flex justify-center floating-element">
+                <div class="relative">
+                    <svg class="w-24 h-24 text-moon-gold" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 10C30 10 15 25 15 45C15 65 30 80 50 80C38 72 32 55 38 40C44 25 50 10 50 10Z" fill="url(#goldMoon)"/>
+                        <circle cx="68" cy="35" r="3" fill="#F3E5AB"/>
+                        <circle cx="78" cy="50" r="2" fill="#F3E5AB"/>
+                        <circle cx="62" cy="62" r="2.5" fill="#F3E5AB"/>
+                        <defs>
+                            <linearGradient id="goldMoon" x1="15" y1="10" x2="50" y2="80" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#F3E5AB"/>
+                                <stop offset="0.5" stop-color="#D4AF37"/>
+                                <stop offset="1" stop-color="#AA7C11"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
 
-<section>
-  <h2>La cuenta regresiva</h2>
-  <div class="countdown">
-    <div><strong id="dias">--</strong>Días</div>
-    <div><strong id="horas">--</strong>Horas</div>
-    <div><strong id="minutos">--</strong>Minutos</div>
-    <div><strong id="segundos">--</strong>Segundos</div>
-  </div>
-  <p id="estadoCuenta">¡Se acerca una noche inolvidable!</p>
-</section>
+            <p class="font-cinzel text-xs tracking-[0.3em] text-moon-gold uppercase mb-2">Bienvenidos a la invitación de</p>
+            <h1 class="font-script text-5xl text-slate-100 mb-1 gold-gradient-text">Florencia</h1>
+            <p class="font-cinzel text-sm text-slate-300 tracking-widest uppercase mb-6">Mis XV Años</p>
+            
+            <div class="w-16 h-0.5 bg-gradient-to-r from-transparent via-moon-gold to-transparent mx-auto mb-6"></div>
 
-<section>
-  <h2>Un poquito de mí</h2>
-  <div class="gallery">
-    <img src="assets/foto1.jpg" alt="Foto de Lucía 1">
-    <img src="assets/foto2.jpg" alt="Foto de Lucía 2">
-    <img src="assets/foto3.jpg" alt="Foto de Lucía 3">
-    <img src="assets/foto4.jpg" alt="Foto de Lucía 4">
-  </div>
-</section>
+            <p class="text-xs text-slate-300 font-light leading-relaxed mb-8">
+                <i class="fa-solid fa-music text-moon-gold mr-1"></i> La música de fondo es parte de la experiencia de esta invitación.
+            </p>
 
-<section>
-  <h2>¿Dónde nos encontramos?</h2>
-  <div class="card">
-    <p id="salon">Nombre del salón</p>
-    <p id="direccion">Dirección a confirmar</p>
-    <a class="button" id="mapa" href="#" target="_blank" rel="noopener">
-      VER UBICACIÓN
-    </a>
-  </div>
-</section>
+            <div class="space-y-3">
+                <button onclick="enterSite(true)" class="w-full py-3.5 px-6 rounded-full gold-bg-gradient text-moon-dark font-semibold text-sm tracking-wider uppercase transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-lg flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-volume-high"></i> Ingresar con música
+                </button>
+                <button onclick="enterSite(false)" class="w-full py-3 px-6 rounded-full bg-moon-accent/80 hover:bg-moon-accent text-slate-300 font-medium text-xs tracking-wider uppercase border border-slate-700 transition-all duration-300">
+                    Ingresar sin música
+                </button>
+            </div>
+        </div>
+    </div>
 
-<section>
-  <h2>Confirmá tu asistencia</h2>
-  <p>Me encantaría compartir esta noche con vos.</p>
-  <a class="button" id="confirmar" href="#" target="_blank" rel="noopener">
-    CONFIRMAR ASISTENCIA
-  </a>
-</section>
+    <!-- MAIN APP CONTAINER (Mobile First layout centered) -->
+    <main class="relative z-10 max-w-lg mx-auto min-h-screen px-4 py-6 md:py-10 space-y-12">
 
-<section>
-  <h2>Código de vestimenta</h2>
-  <div class="card">
-    <p id="vestimenta">Elegante</p>
-    <p>¡Prepará tu mejor look para una noche mágica!</p>
-  </div>
-</section>
+        <!-- HEADER / BRANDING -->
+        <header class="text-center pt-4">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-moon-card/80 border border-moon-gold/30 text-moon-gold text-xs font-cinzel tracking-widest uppercase shadow-inner">
+                <i class="fa-regular fa-star text-[10px]"></i>
+                <span>15.06.2026</span>
+                <i class="fa-regular fa-star text-[10px]"></i>
+            </div>
+        </header>
 
-<section>
-  <h2>Un detalle para mí</h2>
-  <div class="card">
-    <p>Tu presencia es el mejor regalo.</p>
-    <p id="regalos">Pronto compartiremos más información.</p>
-  </div>
-</section>
+        <!-- HERO SECTION -->
+        <section class="text-center relative py-8 px-4 glass-card rounded-3xl border border-moon-gold/20 card-glow overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-32 h-32 bg-moon-gold/10 rounded-full blur-2xl"></div>
+            
+            <!-- Moon & Crescent Illustration -->
+            <div class="flex justify-center mb-4">
+                <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-moon-dark via-moon-accent to-moon-gold/20 p-0.5 flex items-center justify-center moon-glow">
+                    <div class="w-full h-full bg-moon-card rounded-full flex items-center justify-center">
+                        <i class="fa-solid fa-moon text-3xl text-moon-gold animate-pulse"></i>
+                    </div>
+                </div>
+            </div>
 
-<section>
-  <h2>¡Te espero!</h2>
-  <p>Con cariño, Lucía ✧</p>
-  <button id="botonMusica">♫ ACTIVAR MÚSICA</button>
-  <audio id="musica" src="assets/musica.mp3" loop></audio>
-</section>
-</main>
+            <p class="font-cinzel text-xs tracking-[0.4em] text-moon-gold uppercase mb-2">Te invito a celebrar mis</p>
+            <h1 class="font-script text-7xl text-slate-100 gold-gradient-text my-2 leading-tight">Florencia</h1>
+            <p class="font-cinzel text-lg tracking-[0.3em] text-slate-200 uppercase font-semibold mb-6">Mis XV Años</p>
 
-<footer>Los 15 de Lucía · Una noche bajo las estrellas</footer>
+            <!-- Separator -->
+            <div class="flex items-center justify-center gap-3 my-6 text-moon-gold/60">
+                <div class="h-px w-12 bg-gradient-to-r from-transparent to-moon-gold/50"></div>
+                <i class="fa-solid fa-sparkles text-xs"></i>
+                <div class="h-px w-12 bg-gradient-to-l from-transparent to-moon-gold/50"></div>
+            </div>
 
-<script>
-// COMPLETAREMOS ESTOS DATOS JUNTOS
-const fechaFiesta = ""; // Ejemplo: 2026-11-06T21:00:00-03:00
+            <!-- Quote Box -->
+            <div class="relative px-6 py-4 rounded-2xl bg-moon-dark/50 border border-slate-800">
+                <i class="fa-solid fa-quote-left text-moon-gold/30 text-2xl absolute top-2 left-3"></i>
+                <p class="font-garamond italic text-lg text-slate-300 leading-relaxed px-2">
+                    "Te espero para compartir la alegría de esa noche que será para mí mágica, inolvidable y única."
+                </p>
+                <i class="fa-solid fa-quote-right text-moon-gold/30 text-2xl absolute bottom-2 right-3"></i>
+            </div>
+        </section>
 
-if (fechaFiesta) {
-  const fecha = new Date(fechaFiesta);
-  document.getElementById("fecha").textContent =
-    fecha.toLocaleDateString("es-AR", {
-      day: "numeric", month: "long", year: "numeric"
-    });
+        <!-- COUNTDOWN TIMER SECTION -->
+        <section class="glass-card rounded-3xl p-6 text-center border border-moon-gold/20 card-glow">
+            <h2 class="font-cinzel text-xs tracking-[0.3em] text-moon-gold uppercase mb-6 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-hourglass-start"></i> Falta muy poco
+            </h2>
 
-  function actualizarCuenta() {
-    const diferencia = fecha - new Date();
-    if (diferencia <= 0) {
-      document.getElementById("estadoCuenta").textContent =
-        "¡Llegó el gran día!";
-      ["dias", "horas", "minutos", "segundos"].forEach(id =>
-        document.getElementById(id).textContent = "0"
-      );
-      return;
-    }
-    document.getElementById("dias").textContent =
-      Math.floor(diferencia / 86400000);
-    document.getElementById("horas").textContent =
-      Math.floor(diferencia / 3600000) % 24;
-    document.getElementById("minutos").textContent =
-      Math.floor(diferencia / 60000) % 60;
-    document.getElementById("segundos").textContent =
-      Math.floor(diferencia / 1000) % 60;
-  }
-  actualizarCuenta();
-  setInterval(actualizarCuenta, 1000);
-}
+            <div class="grid grid-cols-4 gap-2 text-center" id="countdown">
+                <div class="p-3 rounded-2xl bg-moon-dark/80 border border-moon-gold/20">
+                    <span id="days" class="block font-cinzel text-2xl md:text-3xl font-bold text-moon-gold">00</span>
+                    <span class="text-[10px] uppercase tracking-wider text-slate-400 font-sans">Días</span>
+                </div>
+                <div class="p-3 rounded-2xl bg-moon-dark/80 border border-moon-gold/20">
+                    <span id="hours" class="block font-cinzel text-2xl md:text-3xl font-bold text-moon-gold">00</span>
+                    <span class="text-[10px] uppercase tracking-wider text-slate-400 font-sans">Hs</span>
+                </div>
+                <div class="p-3 rounded-2xl bg-moon-dark/80 border border-moon-gold/20">
+                    <span id="minutes" class="block font-cinzel text-2xl md:text-3xl font-bold text-moon-gold">00</span>
+                    <span class="text-[10px] uppercase tracking-wider text-slate-400 font-sans">Min</span>
+                </div>
+                <div class="p-3 rounded-2xl bg-moon-dark/80 border border-moon-gold/20">
+                    <span id="seconds" class="block font-cinzel text-2xl md:text-3xl font-bold text-moon-gold">00</span>
+                    <span class="text-[10px] uppercase tracking-wider text-slate-400 font-sans">Seg</span>
+                </div>
+            </div>
+        </section>
 
-// La música empieza cuando el invitado toca el botón.
-document.getElementById("botonMusica").addEventListener("click", async () => {
-  const audio = document.getElementById("musica");
-  try {
-    if (audio.paused) {
-      await audio.play();
-      document.getElementById("botonMusica").textContent = "Ⅱ PAUSAR MÚSICA";
-    } else {
-      audio.pause();
-      document.getElementById("botonMusica").textContent = "♫ ACTIVAR MÚSICA";
-    }
-  } catch {
-    alert("Revisá que el archivo assets/musica.mp3 exista.");
-  }
-});
-</script>
+        <!-- GUEST PERSONALIZED PASS CARD -->
+        <section class="glass-card rounded-3xl p-6 border border-moon-gold/20 relative overflow-hidden">
+            <div class="flex items-center gap-4 mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-moon-gold/10 border border-moon-gold/30 flex items-center justify-center text-moon-gold text-xl">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+                <div>
+                    <h3 class="font-cinzel text-sm text-slate-100 font-semibold uppercase tracking-wider">Pase Especial</h3>
+                    <p class="text-xs text-moon-gold font-medium">Familia Pérez & Acompañantes</p>
+                </div>
+            </div>
+            <div class="bg-moon-dark/60 rounded-xl p-4 border border-slate-800 text-xs text-slate-300 space-y-2">
+                <div class="flex justify-between items-center">
+                    <span class="text-slate-400">Pases asignados:</span>
+                    <span class="font-semibold text-moon-gold bg-moon-gold/10 px-2.5 py-1 rounded-full border border-moon-gold/20">3 Personas</span>
+                </div>
+                <div class="flex justify-between items-center pt-2 border-t border-slate-800">
+                    <span class="text-slate-400">Nombres:</span>
+                    <span class="text-slate-200">Juan, Maria y Sofía</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVENT LOCATION & TIME SECTION -->
+        <section class="glass-card rounded-3xl p-6 text-center border border-moon-gold/20 space-y-6">
+            <div class="w-16 h-16 rounded-full bg-moon-gold/10 border border-moon-gold/30 mx-auto flex items-center justify-center text-moon-gold text-2xl">
+                <i class="fa-solid fa-champagne-glasses"></i>
+            </div>
+
+            <div>
+                <h2 class="font-cinzel text-xl text-slate-100 font-bold uppercase tracking-widest">Fiesta</h2>
+                <p class="text-xs text-moon-gold tracking-widest uppercase mt-1">Sábado 15 de Junio - 20:30 HS</p>
+            </div>
+
+            <div class="bg-moon-dark/60 rounded-2xl p-4 border border-slate-800 text-center space-y-1">
+                <p class="font-cinzel text-sm font-semibold text-slate-200">Salón "Palacio Lunar"</p>
+                <p class="text-xs text-slate-400">Av. Libertador 4500, Buenos Aires</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <a href="https://maps.google.com" target="_blank" class="py-3 px-4 rounded-xl bg-moon-accent hover:bg-moon-accent/80 text-slate-200 text-xs font-semibold uppercase tracking-wider border border-slate-700 flex items-center justify-center gap-2 transition-all">
+                    <i class="fa-solid fa-location-dot text-moon-gold"></i> ¿Cómo llegar?
+                </a>
+                <button onclick="addToCalendar()" class="py-3 px-4 rounded-xl bg-moon-accent hover:bg-moon-accent/80 text-slate-200 text-xs font-semibold uppercase tracking-wider border border-slate-700 flex items-center justify-center gap-2 transition-all">
+                    <i class="fa-regular fa-calendar-plus text-moon-gold"></i> Agendar evento
+                </button>
+            </div>
+        </section>
+
+        <!-- RSVP CONFIRMATION CALL TO ACTION -->
+        <section class="glass-card rounded-3xl p-8 text-center border border-moon-gold/30 moon-glow relative overflow-hidden">
+            <div class="w-14 h-14 rounded-full bg-moon-gold/10 border border-moon-gold/40 mx-auto flex items-center justify-center text-moon-gold text-2xl mb-4">
+                <i class="fa-solid fa-clipboard-check"></i>
+            </div>
+            
+            <h2 class="font-cinzel text-lg text-slate-100 font-bold uppercase tracking-wider">Confirmación de Asistencia</h2>
+            <p class="text-xs text-slate-300 mt-2 mb-6 leading-relaxed">
+                Es muy importante para mí contar con tu presencia. Por favor confirma antes del 20 de Mayo.
+            </p>
+
+            <button onclick="openModal('rsvp-modal')" class="w-full py-4 px-6 rounded-full gold-bg-gradient text-moon-dark font-bold text-sm tracking-widest uppercase transition-all shadow-lg transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-check"></i> Confirmar Asistencia
+            </button>
+        </section>
+
+        <!-- PHOTO GALLERY / INSTAGRAM CAROUSEL GRID -->
+        <section class="glass-card rounded-3xl p-6 border border-moon-gold/20 text-center">
+            <h2 class="font-cinzel text-xs tracking-[0.3em] text-moon-gold uppercase mb-2">Recuerdos</h2>
+            <h3 class="font-garamond italic text-2xl text-slate-100 mb-6">Un recorrido de estos 15 años</h3>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div onclick="openLightbox('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80')" class="aspect-square rounded-2xl overflow-hidden border border-slate-700/50 cursor-pointer group relative">
+                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80" alt="Foto 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-moon-dark/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-moon-gold"><i class="fa-solid fa-magnifying-glass-plus text-xl"></i></div>
+                </div>
+                <div onclick="openLightbox('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80')" class="aspect-square rounded-2xl overflow-hidden border border-slate-700/50 cursor-pointer group relative">
+                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=400&q=80" alt="Foto 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-moon-dark/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-moon-gold"><i class="fa-solid fa-magnifying-glass-plus text-xl"></i></div>
+                </div>
+                <div onclick="openLightbox('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80')" class="aspect-square rounded-2xl overflow-hidden border border-slate-700/50 cursor-pointer group relative">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=400&q=80" alt="Foto 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-moon-dark/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-moon-gold"><i class="fa-solid fa-magnifying-glass-plus text-xl"></i></div>
+                </div>
+                <div onclick="openLightbox('https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=800&q=80')" class="aspect-square rounded-2xl overflow-hidden border border-slate-700/50 cursor-pointer group relative">
+                    <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=400&q=80" alt="Foto 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-moon-dark/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-moon-gold"><i class="fa-solid fa-magnifying-glass-plus text-xl"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXTRA DETAILS CARDS (3 COLUMNS / MODALS TRIGGER) -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+            <!-- Music Suggestion Card -->
+            <div class="glass-card rounded-2xl p-5 text-center border border-moon-gold/20 flex flex-col items-center justify-between space-y-3">
+                <div class="w-10 h-10 rounded-full bg-moon-gold/10 flex items-center justify-center text-moon-gold">
+                    <i class="fa-solid fa-music"></i>
+                </div>
+                <div>
+                    <h3 class="font-cinzel text-xs font-bold text-slate-200 uppercase">Música</h3>
+                    <p class="text-[11px] text-slate-400 mt-1">¿Qué tema no puede faltar?</p>
+                </div>
+                <button onclick="openModal('music-modal')" class="w-full py-2 px-3 rounded-xl bg-moon-accent/90 hover:bg-moon-accent text-moon-gold border border-moon-gold/30 text-xs font-semibold tracking-wider uppercase transition-all">
+                    Sugerir canción
+                </button>
+            </div>
+
+            <!-- Dress Code Card -->
+            <div class="glass-card rounded-2xl p-5 text-center border border-moon-gold/20 flex flex-col items-center justify-between space-y-3">
+                <div class="w-10 h-10 rounded-full bg-moon-gold/10 flex items-center justify-center text-moon-gold">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <div>
+                    <h3 class="font-cinzel text-xs font-bold text-slate-200 uppercase">Dress Code</h3>
+                    <p class="text-[11px] text-slate-400 mt-1">Elegante / Vestimenta Formal</p>
+                </div>
+                <button onclick="openModal('dresscode-modal')" class="w-full py-2 px-3 rounded-xl bg-moon-accent/90 hover:bg-moon-accent text-moon-gold border border-moon-gold/30 text-xs font-semibold tracking-wider uppercase transition-all">
+                    Ver detalles
+                </button>
+            </div>
+
+            <!-- Tips & Notes Card -->
+            <div class="glass-card rounded-2xl p-5 text-center border border-moon-gold/20 flex flex-col items-center justify-between space-y-3">
+                <div class="w-10 h-10 rounded-full bg-moon-gold/10 flex items-center justify-center text-moon-gold">
+                    <i class="fa-solid fa-circle-info"></i>
+                </div>
+                <div>
+                    <h3 class="font-cinzel text-xs font-bold text-slate-200 uppercase">Tips y Notas</h3>
+                    <p class="text-[11px] text-slate-400 mt-1">Información importante</p>
+                </div>
+                <button onclick="openModal('tips-modal')" class="w-full py-2 px-3 rounded-xl bg-moon-accent/90 hover:bg-moon-accent text-moon-gold border border-moon-gold/30 text-xs font-semibold tracking-wider uppercase transition-all">
+                    + Info
+                </button>
+            </div>
+        </section>
+
+        <!-- GIFT REGISTRY SECTION -->
+        <section class="glass-card rounded-3xl p-6 text-center border border-moon-gold/20 space-y-4">
+            <div class="w-12 h-12 rounded-full bg-moon-gold/10 border border-moon-gold/30 mx-auto flex items-center justify-center text-moon-gold text-xl">
+                <i class="fa-solid fa-gift"></i>
+            </div>
+            
+            <h2 class="font-cinzel text-base text-slate-100 font-bold uppercase tracking-wider">Regalos</h2>
+            <p class="text-xs text-slate-300 leading-relaxed max-w-xs mx-auto">
+                Tu presencia es mi mejor regalo. Si deseas hacerme un obsequio, puedes colaborar con mi viaje de sueños.
+            </p>
+
+            <button onclick="openModal('gift-modal')" class="py-3 px-6 rounded-full bg-moon-accent hover:bg-moon-accent/80 text-moon-gold font-semibold text-xs uppercase tracking-widest border border-moon-gold/30 transition-all">
+                Ver datos bancarios
+            </button>
+        </section>
+
+        <!-- INSTAGRAM HASHTAG SECTION -->
+        <section class="glass-card rounded-3xl p-6 text-center border border-moon-gold/20 space-y-3">
+            <i class="fa-brands fa-instagram text-3xl text-moon-gold"></i>
+            <h2 class="font-cinzel text-sm text-slate-100 font-bold uppercase tracking-widest">Compartí tu foto</h2>
+            <p class="text-xs text-slate-400">Usa nuestro hashtag oficial en tus historias y publicaciones:</p>
+            <div class="inline-block px-4 py-2 rounded-xl bg-moon-dark border border-moon-gold/40 text-moon-gold font-bold text-sm tracking-wider">
+                #15FlorMoon
+            </div>
+            <div>
+                <a href="https://instagram.com" target="_blank" class="inline-flex items-center gap-2 text-xs text-slate-300 hover:text-moon-gold transition-colors pt-2">
+                    <span>Ver en Instagram</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center py-6 text-xs text-slate-500 space-y-2 border-t border-slate-800/80">
+            <p class="font-cinzel uppercase tracking-widest text-[10px] text-slate-400">Florencia • Mis XV Años</p>
+            <p class="text-[10px]">¡Nos vemos en la fiesta!</p>
+        </footer>
+
+    </main>
+
+    <!-- BACKGROUND AUDIO PLAYER -->
+    <audio id="bg-audio" loop preload="auto">
+        <!-- Royalty-free ambient music track demo -->
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=cinematic-time-lapse-115672.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- FLOATING MUSIC TOGGLE BUTTON -->
+    <button id="audio-toggle" onclick="toggleAudio()" class="fixed bottom-5 right-5 z-40 w-12 h-12 rounded-full bg-moon-card/90 border border-moon-gold/40 text-moon-gold flex items-center justify-center shadow-lg backdrop-blur-md transition-all hover:scale-110">
+        <i id="audio-icon" class="fa-solid fa-volume-xmark text-lg"></i>
+    </button>
+
+
+    <!-- MODALS SECTION -->
+
+    <!-- 1. RSVP MODAL -->
+    <div id="rsvp-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-moon-dark/80 backdrop-blur-md">
+        <div class="max-w-md w-full glass-card rounded-3xl p-6 border border-moon-gold/30 moon-glow relative overflow-y-auto max-h-[90vh]">
+            <button onclick="closeModal('rsvp-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-moon-gold text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-full bg-moon-gold/10 border border-moon-gold/30 mx-auto flex items-center justify-center text-moon-gold text-xl mb-2">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <h3 class="font-cinzel text-lg text-slate-100 font-bold uppercase">Confirmar Asistencia</h3>
+            </div>
+
+            <form id="rsvp-form" onsubmit="submitRSVP(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block text-slate-300 font-medium mb-1">Nombre Completo *</label>
+                    <input type="text" required placeholder="Tu nombre y apellido" class="w-full px-4 py-3 rounded-xl bg-moon-dark border border-slate-700 text-slate-100 focus:outline-none focus:border-moon-gold">
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-medium mb-1">¿Asistirás? *</label>
+                    <select required class="w-full px-4 py-3 rounded-xl bg-moon-dark border border-slate-700 text-slate-100 focus:outline-none focus:border-moon-gold">
+                        <option value="si">¡Sí, ahí estaré!</option>
+                        <option value="no">Lamentablemente no puedo</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-medium mb-1">Preferencia de Menú / Intolerancias</label>
+                    <select class="w-full px-4 py-3 rounded-xl bg-moon-dark border border-slate-700 text-slate-100 focus:outline-none focus:border-moon-gold">
+                        <option value="estandar">Menú Estándar</option>
+                        <option value="vegetariano">Vegetariano</option>
+                        <option value="vegano">Vegano</option>
+                        <option value="celiaco">Celíaco / TACC</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-slate-300 font-medium mb-1">Mensaje para Florencia</label>
+                    <textarea rows="3" placeholder="Escribe unas palabras..." class="w-full px-4 py-3 rounded-xl bg-moon-dark border border-slate-700 text-slate-100 focus:outline-none focus:border-moon-gold"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-3 px-6 rounded-full gold-bg-gradient text-moon-dark font-bold text-xs uppercase tracking-widest shadow-lg">
+                    Enviar Confirmación
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. MUSIC SUGGESTION MODAL -->
+    <div id="music-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-moon-dark/80 backdrop-blur-md">
+        <div class="max-w-md w-full glass-card rounded-3xl p-6 border border-moon-gold/30 relative">
+            <button onclick="closeModal('music-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-moon-gold text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <i class="fa-solid fa-compact-disc text-3xl text-moon-gold mb-2 animate-spin-slow"></i>
+                <h3 class="font-cinzel text-base text-slate-100 font-bold uppercase">Sugerir Canción</h3>
+                <p class="text-xs text-slate-400 mt-1">¿Qué tema te gustaría escuchar para bailar?</p>
+            </div>
+
+            <form onsubmit="submitMusic(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block text-slate-300 font-medium mb-1">Canción y Artista *</label>
+                    <input type="text" required placeholder="Ej: Dua Lipa - Levitating" class="w-full px-4 py-3 rounded-xl bg-moon-dark border border-slate-700 text-slate-100 focus:outline-none focus:border-moon-gold">
+                </div>
+                <div>
+                    <label class="block text-slate-300 font-medium mb-1">Tu Nombre</label>
+                    <input type="text" placeholder="Tu nombre" class="w-full px-4 py-3 rounded-xl bg-moon-dark border border-slate-700 text-slate-100 focus:outline-none focus:border-moon-gold">
+                </div>
+                <button type="submit" class="w-full py-3 px-6 rounded-full gold-bg-gradient text-moon-dark font-bold text-xs uppercase tracking-widest">
+                    Enviar Sugerencia
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 3. DRESS CODE MODAL -->
+    <div id="dresscode-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-moon-dark/80 backdrop-blur-md">
+        <div class="max-w-md w-full glass-card rounded-3xl p-6 border border-moon-gold/30 text-center relative">
+            <button onclick="closeModal('dresscode-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-moon-gold text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <i class="fa-solid fa-user-tie text-3xl text-moon-gold mb-3"></i>
+            <h3 class="font-cinzel text-lg text-slate-100 font-bold uppercase mb-2">Dress Code</h3>
+            <p class="text-xs text-moon-gold font-semibold uppercase tracking-widest mb-4">Elegante / Vestimenta Formal</p>
+
+            <div class="bg-moon-dark/60 rounded-2xl p-4 border border-slate-800 text-left text-xs text-slate-300 space-y-2 mb-4">
+                <p><i class="fa-solid fa-check text-moon-gold mr-2"></i><strong>Mujeres:</strong> Vestido largo o cocktail formal.</p>
+                <p><i class="fa-solid fa-check text-moon-gold mr-2"></i><strong>Hombres:</strong> Traje elegante o ambo con camisa.</p>
+                <p class="text-slate-400 text-[11px] pt-2 border-t border-slate-800">
+                    <i class="fa-solid fa-triangle-exclamation text-amber-400 mr-1"></i> Por favor reservar los colores blanco y dorado exclusivo para la agasajada.
+                </p>
+            </div>
+
+            <button onclick="closeModal('dresscode-modal')" class="py-2.5 px-6 rounded-full bg-moon-accent text-slate-200 text-xs uppercase font-semibold">Entendido</button>
+        </div>
+    </div>
+
+    <!-- 4. TIPS & INFO MODAL -->
+    <div id="tips-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-moon-dark/80 backdrop-blur-md">
+        <div class="max-w-md w-full glass-card rounded-3xl p-6 border border-moon-gold/30 text-center relative">
+            <button onclick="closeModal('tips-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-moon-gold text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <i class="fa-solid fa-circle-info text-3xl text-moon-gold mb-3"></i>
+            <h3 class="font-cinzel text-lg text-slate-100 font-bold uppercase mb-4">Tips e Información</h3>
+
+            <div class="text-left text-xs text-slate-300 space-y-3 mb-6">
+                <div class="flex items-start gap-3 bg-moon-dark/50 p-3 rounded-xl border border-slate-800">
+                    <i class="fa-solid fa-clock text-moon-gold mt-0.5"></i>
+                    <div>
+                        <p class="font-semibold text-slate-200">Puntualidad</p>
+                        <p class="text-[11px] text-slate-400">Agradecemos llegar 15 minutos antes del inicio recepción (20:15 hs).</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 bg-moon-dark/50 p-3 rounded-xl border border-slate-800">
+                    <i class="fa-solid fa-square-parking text-moon-gold mt-0.5"></i>
+                    <div>
+                        <p class="font-semibold text-slate-200">Estacionamiento</p>
+                        <p class="text-[11px] text-slate-400">El salón cuenta con estacionamiento privado y seguridad.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="closeModal('tips-modal')" class="py-2.5 px-6 rounded-full bg-moon-accent text-slate-200 text-xs uppercase font-semibold">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- 5. GIFT DETAILS MODAL -->
+    <div id="gift-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-moon-dark/80 backdrop-blur-md">
+        <div class="max-w-md w-full glass-card rounded-3xl p-6 border border-moon-gold/30 text-center relative">
+            <button onclick="closeModal('gift-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-moon-gold text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <i class="fa-solid fa-building-columns text-3xl text-moon-gold mb-2"></i>
+            <h3 class="font-cinzel text-lg text-slate-100 font-bold uppercase mb-4">Datos Bancarios</h3>
+
+            <div class="bg-moon-dark/80 rounded-2xl p-4 border border-slate-800 text-left text-xs space-y-3 mb-4">
+                <div>
+                    <span class="text-slate-400 block text-[10px] uppercase">Titular:</span>
+                    <span class="font-semibold text-slate-200">Florencia González</span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block text-[10px] uppercase">Banco / Billetera:</span>
+                    <span class="font-semibold text-slate-200">Mercado Pago / Banco Nación</span>
+                </div>
+                <div class="flex justify-between items-center pt-2 border-t border-slate-800">
+                    <div>
+                        <span class="text-slate-400 block text-[10px] uppercase">Alias:</span>
+                        <span id="alias-text" class="font-bold text-moon-gold">FLOR.MIS15.MOON</span>
+                    </div>
+                    <button onclick="copyToClipboard('FLOR.MIS15.MOON', 'Alias copiado al portapapeles')" class="px-3 py-1.5 rounded-lg bg-moon-accent hover:bg-moon-gold/20 text-moon-gold text-[11px] border border-moon-gold/30 transition-all">
+                        <i class="fa-regular fa-copy"></i> Copiar
+                    </button>
+                </div>
+                <div class="flex justify-between items-center pt-2 border-t border-slate-800">
+                    <div>
+                        <span class="text-slate-400 block text-[10px] uppercase">CBU:</span>
+                        <span id="cbu-text" class="font-mono text-slate-300 text-[11px]">0000003100012345678901</span>
+                    </div>
+                    <button onclick="copyToClipboard('0000003100012345678901', 'CBU copiado al portapapeles')" class="px-3 py-1.5 rounded-lg bg-moon-accent hover:bg-moon-gold/20 text-moon-gold text-[11px] border border-moon-gold/30 transition-all">
+                        <i class="fa-regular fa-copy"></i> Copiar
+                    </button>
+                </div>
+            </div>
+
+            <button onclick="closeModal('gift-modal')" class="py-2.5 px-6 rounded-full bg-moon-accent text-slate-200 text-xs uppercase font-semibold">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- 6. LIGHTBOX MODAL FOR GALLERY -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-moon-dark/95 backdrop-blur-md" onclick="closeLightbox()">
+        <button class="absolute top-4 right-4 text-slate-200 hover:text-moon-gold text-2xl">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="Ampliada" class="max-w-full max-h-[85vh] rounded-2xl border border-moon-gold/30 object-contain shadow-2xl">
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 hidden px-6 py-3 rounded-full bg-moon-card border border-moon-gold/50 text-moon-gold text-xs font-semibold shadow-2xl transition-all duration-300 flex items-center gap-2">
+        <i class="fa-solid fa-circle-check"></i> <span id="toast-msg">Mensaje enviado</span>
+    </div>
+
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. Audio Background Controller
+        const audio = document.getElementById('bg-audio');
+        const audioIcon = document.getElementById('audio-icon');
+        let isPlaying = false;
+
+        function enterSite(playMusic) {
+            document.getElementById('welcome-modal').classList.add('opacity-0');
+            setTimeout(() => {
+                document.getElementById('welcome-modal').classList.add('hidden');
+            }, 700);
+
+            if (playMusic) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    updateAudioUI();
+                }).catch(err => {
+                    console.log("Audio autoplay restricted:", err);
+                });
+            }
+        }
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+            } else {
+                audio.play();
+                isPlaying = true;
+            }
+            updateAudioUI();
+        }
+
+        function updateAudioUI() {
+            if (isPlaying) {
+                audioIcon.className = "fa-solid fa-volume-high text-lg text-moon-gold animate-pulse";
+            } else {
+                audioIcon.className = "fa-solid fa-volume-xmark text-lg text-slate-400";
+            }
+        }
+
+        // 2. Countdown Timer Logic
+        // Target Date: June 15, 2026 20:30:00
+        const eventDate = new Date("2026-06-15T20:30:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = "<div class='col-span-4 text-moon-gold font-cinzel text-lg'>¡Llegó el gran día!</div>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // 3. Modal Handlers
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        // 4. Lightbox Gallery Handler
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-modal').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').classList.add('hidden');
+        }
+
+        // 5. Toast Notification System
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // 6. Copy to Clipboard
+        function copyToClipboard(text, successMsg) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showToast(successMsg);
+        }
+
+        // 7. Form Submissions
+        function submitRSVP(e) {
+            e.preventDefault();
+            closeModal('rsvp-modal');
+            showToast('¡Gracias por confirmar tu asistencia!');
+            document.getElementById('rsvp-form').reset();
+        }
+
+        function submitMusic(e) {
+            e.preventDefault();
+            closeModal('music-modal');
+            showToast('¡Sugerencia de canción recibida!');
+        }
+
+        // 8. Add to Calendar Handler (.ics / Google Calendar link)
+        function addToCalendar() {
+            const title = encodeURIComponent("Mis 15 Años - Florencia");
+            const details = encodeURIComponent("Celebración de los 15 Años de Florencia en Salón Palacio Lunar.");
+            const location = encodeURIComponent("Av. Libertador 4500, Buenos Aires");
+            const startDate = "20260615T233000Z";
+            const endDate = "20260616T080000Z";
+
+            const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${details}&location=${location}`;
+            window.open(googleCalendarUrl, '_blank');
+        }
+    </script>
 </body>
 </html>
