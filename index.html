@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Los 15 de Lucía</title>
+<style>
+:root {
+  --fondo: #080c1c;
+  --plata: #d9d9e8;
+  --texto: #f6f3ff;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: Georgia, serif;
+  text-align: center;
+}
+section { padding: 65px 20px; }
+h1, h2 { font-weight: normal; }
+h1 { font-size: clamp(48px, 10vw, 86px); margin: 12px 0; }
+h2 { font-size: 32px; color: var(--plata); }
+p { line-height: 1.8; }
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 20px;
+  background:
+    linear-gradient(#080c1c88, #080c1cee),
+    url("assets/fondo.jpg") center/cover;
+}
+.moon { font-size: 62px; }
+.subtitle { letter-spacing: 5px; text-transform: uppercase; }
+button, .button {
+  display: inline-block;
+  border: 1px solid var(--plata);
+  background: transparent;
+  color: var(--texto);
+  padding: 14px 24px;
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+  margin: 8px;
+}
+button:hover, .button:hover {
+  background: var(--plata);
+  color: var(--fondo);
+}
+.card {
+  max-width: 620px;
+  margin: 22px auto;
+  padding: 25px;
+  border: 1px solid #c7c7dc55;
+  background: #ffffff06;
+}
+.countdown {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.countdown div {
+  min-width: 72px;
+  padding: 15px 8px;
+  border: 1px solid #c7c7dc55;
+}
+.countdown strong { display: block; font-size: 28px; }
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 700px;
+  margin: auto;
+}
+.gallery img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border: 1px solid #c7c7dc55;
+}
+footer { padding: 30px; color: #b9b9cc; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="moon">☾</div>
+  <p class="subtitle">Una noche para recordar</p>
+  <p>Mis quince años</p>
+  <h1>Lucía</h1>
+  <p>Una noche mágica bajo las estrellas</p>
+  <button onclick="document.getElementById('invitacion').scrollIntoView()">
+    DESCUBRÍ LA INVITACIÓN
+  </button>
+</header>
+
+<main>
+<section id="invitacion">
+  <p>✧ ✧ ✧</p>
+  <h2>Mi noche soñada</h2>
+  <p>
+    Hay momentos que se convierten en recuerdos para toda la vida.
+    Quiero compartir esta noche tan especial con las personas que quiero.
+  </p>
+  <div class="card">
+    <p>TE ESPERO PARA CELEBRAR</p>
+    <h2>Mis 15 años</h2>
+    <p id="fecha">Fecha a confirmar</p>
+    <p id="hora">Horario a confirmar</p>
+  </div>
+</section>
+
+<section>
+  <h2>La cuenta regresiva</h2>
+  <div class="countdown">
+    <div><strong id="dias">--</strong>Días</div>
+    <div><strong id="horas">--</strong>Horas</div>
+    <div><strong id="minutos">--</strong>Minutos</div>
+    <div><strong id="segundos">--</strong>Segundos</div>
+  </div>
+  <p id="estadoCuenta">¡Se acerca una noche inolvidable!</p>
+</section>
+
+<section>
+  <h2>Un poquito de mí</h2>
+  <div class="gallery">
+    <img src="assets/foto1.jpg" alt="Foto de Lucía 1">
+    <img src="assets/foto2.jpg" alt="Foto de Lucía 2">
+    <img src="assets/foto3.jpg" alt="Foto de Lucía 3">
+    <img src="assets/foto4.jpg" alt="Foto de Lucía 4">
+  </div>
+</section>
+
+<section>
+  <h2>¿Dónde nos encontramos?</h2>
+  <div class="card">
+    <p id="salon">Nombre del salón</p>
+    <p id="direccion">Dirección a confirmar</p>
+    <a class="button" id="mapa" href="#" target="_blank" rel="noopener">
+      VER UBICACIÓN
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Confirmá tu asistencia</h2>
+  <p>Me encantaría compartir esta noche con vos.</p>
+  <a class="button" id="confirmar" href="#" target="_blank" rel="noopener">
+    CONFIRMAR ASISTENCIA
+  </a>
+</section>
+
+<section>
+  <h2>Código de vestimenta</h2>
+  <div class="card">
+    <p id="vestimenta">Elegante</p>
+    <p>¡Prepará tu mejor look para una noche mágica!</p>
+  </div>
+</section>
+
+<section>
+  <h2>Un detalle para mí</h2>
+  <div class="card">
+    <p>Tu presencia es el mejor regalo.</p>
+    <p id="regalos">Pronto compartiremos más información.</p>
+  </div>
+</section>
+
+<section>
+  <h2>¡Te espero!</h2>
+  <p>Con cariño, Lucía ✧</p>
+  <button id="botonMusica">♫ ACTIVAR MÚSICA</button>
+  <audio id="musica" src="assets/musica.mp3" loop></audio>
+</section>
+</main>
+
+<footer>Los 15 de Lucía · Una noche bajo las estrellas</footer>
+
+<script>
+// COMPLETAREMOS ESTOS DATOS JUNTOS
+const fechaFiesta = ""; // Ejemplo: 2026-11-06T21:00:00-03:00
+
+if (fechaFiesta) {
+  const fecha = new Date(fechaFiesta);
+  document.getElementById("fecha").textContent =
+    fecha.toLocaleDateString("es-AR", {
+      day: "numeric", month: "long", year: "numeric"
+    });
+
+  function actualizarCuenta() {
+    const diferencia = fecha - new Date();
+    if (diferencia <= 0) {
+      document.getElementById("estadoCuenta").textContent =
+        "¡Llegó el gran día!";
+      ["dias", "horas", "minutos", "segundos"].forEach(id =>
+        document.getElementById(id).textContent = "0"
+      );
+      return;
+    }
+    document.getElementById("dias").textContent =
+      Math.floor(diferencia / 86400000);
+    document.getElementById("horas").textContent =
+      Math.floor(diferencia / 3600000) % 24;
+    document.getElementById("minutos").textContent =
+      Math.floor(diferencia / 60000) % 60;
+    document.getElementById("segundos").textContent =
+      Math.floor(diferencia / 1000) % 60;
+  }
+  actualizarCuenta();
+  setInterval(actualizarCuenta, 1000);
+}
+
+// La música empieza cuando el invitado toca el botón.
+document.getElementById("botonMusica").addEventListener("click", async () => {
+  const audio = document.getElementById("musica");
+  try {
+    if (audio.paused) {
+      await audio.play();
+      document.getElementById("botonMusica").textContent = "Ⅱ PAUSAR MÚSICA";
+    } else {
+      audio.pause();
+      document.getElementById("botonMusica").textContent = "♫ ACTIVAR MÚSICA";
+    }
+  } catch {
+    alert("Revisá que el archivo assets/musica.mp3 exista.");
+  }
+});
+</script>
+</body>
+</html>
