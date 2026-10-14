@@ -85,8 +85,10 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(212, 175, 55, 0.2);
         }
+
+        /* Fondo personalizado para la bienvenida apuntando a assets/fondo.jpg */
         .welcome-bg-custom {
-            background: url('assets/nombre-de-tu-imagen.jpg') center / cover no-repeat !important;
+            background: linear-gradient(rgba(11, 15, 25, 0.75), rgba(11, 15, 25, 0.85)), url('assets/fondo.jpg') center / cover no-repeat !important;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -94,7 +96,6 @@
             inset: 0;
             z-index: 50;
             padding: 1rem;
-        
         }
     </style>
 </head>
@@ -118,7 +119,7 @@
     </div>
 
     <!-- AUDIO WELCOME OVERLAY MODAL -->
-   <div id="welcome-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-md transition-opacity duration-700 welcome-bg-custom">
+    <div id="welcome-modal" class="backdrop-blur-md transition-opacity duration-700 welcome-bg-custom">
         <div class="max-w-md w-full glass-card rounded-3xl p-8 text-center border border-moon-gold/30 moon-glow relative overflow-hidden">
             <!-- Decorative Moon SVG Header -->
             <div class="mb-6 flex justify-center floating-element">
@@ -160,9 +161,8 @@
         </div>
     </div>
 
-    <!-- MAIN APP CONTAINER (Mobile First layout centered) -->
+    <!-- MAIN APP CONTAINER -->
     <main class="relative z-10 max-w-lg mx-auto min-h-screen px-4 py-6 md:py-10 space-y-12">
-
         <!-- HEADER / BRANDING -->
         <header class="text-center pt-4">
             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-moon-card/80 border border-moon-gold/30 text-moon-gold text-xs font-cinzel tracking-widest uppercase shadow-inner">
@@ -176,7 +176,6 @@
         <section class="text-center relative py-8 px-4 glass-card rounded-3xl border border-moon-gold/20 card-glow overflow-hidden">
             <div class="absolute -top-10 -right-10 w-32 h-32 bg-moon-gold/10 rounded-full blur-2xl"></div>
             
-            <!-- Moon & Crescent Illustration -->
             <div class="flex justify-center mb-4">
                 <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-moon-dark via-moon-accent to-moon-gold/20 p-0.5 flex items-center justify-center moon-glow">
                     <div class="w-full h-full bg-moon-card rounded-full flex items-center justify-center">
@@ -189,14 +188,12 @@
             <h1 class="font-script text-7xl text-slate-100 gold-gradient-text my-2 leading-tight">Florencia</h1>
             <p class="font-cinzel text-lg tracking-[0.3em] text-slate-200 uppercase font-semibold mb-6">Mis XV Años</p>
 
-            <!-- Separator -->
             <div class="flex items-center justify-center gap-3 my-6 text-moon-gold/60">
                 <div class="h-px w-12 bg-gradient-to-r from-transparent to-moon-gold/50"></div>
                 <i class="fa-solid fa-sparkles text-xs"></i>
                 <div class="h-px w-12 bg-gradient-to-l from-transparent to-moon-gold/50"></div>
             </div>
 
-            <!-- Quote Box -->
             <div class="relative px-6 py-4 rounded-2xl bg-moon-dark/50 border border-slate-800">
                 <i class="fa-solid fa-quote-left text-moon-gold/30 text-2xl absolute top-2 left-3"></i>
                 <p class="font-garamond italic text-lg text-slate-300 leading-relaxed px-2">
@@ -297,119 +294,15 @@
             </button>
         </section>
 
-        <!-- PHOTO GALLERY / INSTAGRAM CAROUSEL GRID -->
-        <section class="glass-card rounded-3xl p-6 border border-moon-gold/20 text-center">
-            <h2 class="font-cinzel text-xs tracking-[0.3em] text-moon-gold uppercase mb-2">Recuerdos</h2>
-            <h3 class="font-garamond italic text-2xl text-slate-100 mb-6">Un recorrido de estos 15 años</h3>
-
-            <div class="grid grid-cols-2 gap-3">
-                <div onclick="openLightbox('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80')" class="aspect-square rounded-2xl overflow-hidden border border-slate-700/50 cursor-pointer group relative">
-                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80" alt="Foto 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-moon-dark/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-moon-gold"><i class="fa-solid fa-magnifying-glass-plus text-xl"></i></div>
-                </div>
-                <div onclick="openLightbox('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80')" class="aspect-square rounded-2xl overflow-hidden border border-slate-700/50 cursor-pointer group relative">
-                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=400&q=80" alt="Foto 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-moon-dark/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-moon-gold"><i class="fa-solid fa-magnifying-glass-plus text-xl"></i></div>
-                </div>
-                <div onclick="openLightbox('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80')" class="aspect-square rounded-2xl overflow-hidden border border-slate-700/50 cursor-pointer group relative">
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=400&q=80" alt="Foto 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-moon-dark/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-moon-gold"><i class="fa-solid fa-magnifying-glass-plus text-xl"></i></div>
-                </div>
-                <div onclick="openLightbox('https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=800&q=80')" class="aspect-square rounded-2xl overflow-hidden border border-slate-700/50 cursor-pointer group relative">
-                    <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=400&q=80" alt="Foto 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-moon-dark/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-moon-gold"><i class="fa-solid fa-magnifying-glass-plus text-xl"></i></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- EXTRA DETAILS CARDS (3 COLUMNS / MODALS TRIGGER) -->
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
-
-            <!-- Music Suggestion Card -->
-            <div class="glass-card rounded-2xl p-5 text-center border border-moon-gold/20 flex flex-col items-center justify-between space-y-3">
-                <div class="w-10 h-10 rounded-full bg-moon-gold/10 flex items-center justify-center text-moon-gold">
-                    <i class="fa-solid fa-music"></i>
-                </div>
-                <div>
-                    <h3 class="font-cinzel text-xs font-bold text-slate-200 uppercase">Música</h3>
-                    <p class="text-[11px] text-slate-400 mt-1">¿Qué tema no puede faltar?</p>
-                </div>
-                <button onclick="openModal('music-modal')" class="w-full py-2 px-3 rounded-xl bg-moon-accent/90 hover:bg-moon-accent text-moon-gold border border-moon-gold/30 text-xs font-semibold tracking-wider uppercase transition-all">
-                    Sugerir canción
-                </button>
-            </div>
-
-            <!-- Dress Code Card -->
-            <div class="glass-card rounded-2xl p-5 text-center border border-moon-gold/20 flex flex-col items-center justify-between space-y-3">
-                <div class="w-10 h-10 rounded-full bg-moon-gold/10 flex items-center justify-center text-moon-gold">
-                    <i class="fa-solid fa-user-tie"></i>
-                </div>
-                <div>
-                    <h3 class="font-cinzel text-xs font-bold text-slate-200 uppercase">Dress Code</h3>
-                    <p class="text-[11px] text-slate-400 mt-1">Elegante / Vestimenta Formal</p>
-                </div>
-                <button onclick="openModal('dresscode-modal')" class="w-full py-2 px-3 rounded-xl bg-moon-accent/90 hover:bg-moon-accent text-moon-gold border border-moon-gold/30 text-xs font-semibold tracking-wider uppercase transition-all">
-                    Ver detalles
-                </button>
-            </div>
-
-            <!-- Tips & Notes Card -->
-            <div class="glass-card rounded-2xl p-5 text-center border border-moon-gold/20 flex flex-col items-center justify-between space-y-3">
-                <div class="w-10 h-10 rounded-full bg-moon-gold/10 flex items-center justify-center text-moon-gold">
-                    <i class="fa-solid fa-circle-info"></i>
-                </div>
-                <div>
-                    <h3 class="font-cinzel text-xs font-bold text-slate-200 uppercase">Tips y Notas</h3>
-                    <p class="text-[11px] text-slate-400 mt-1">Información importante</p>
-                </div>
-                <button onclick="openModal('tips-modal')" class="w-full py-2 px-3 rounded-xl bg-moon-accent/90 hover:bg-moon-accent text-moon-gold border border-moon-gold/30 text-xs font-semibold tracking-wider uppercase transition-all">
-                    + Info
-                </button>
-            </div>
-        </section>
-
-        <!-- GIFT REGISTRY SECTION -->
-        <section class="glass-card rounded-3xl p-6 text-center border border-moon-gold/20 space-y-4">
-            <div class="w-12 h-12 rounded-full bg-moon-gold/10 border border-moon-gold/30 mx-auto flex items-center justify-center text-moon-gold text-xl">
-                <i class="fa-solid fa-gift"></i>
-            </div>
-            
-            <h2 class="font-cinzel text-base text-slate-100 font-bold uppercase tracking-wider">Regalos</h2>
-            <p class="text-xs text-slate-300 leading-relaxed max-w-xs mx-auto">
-                Tu presencia es mi mejor regalo. Si deseas hacerme un obsequio, puedes colaborar con mi viaje de sueños.
-            </p>
-
-            <button onclick="openModal('gift-modal')" class="py-3 px-6 rounded-full bg-moon-accent hover:bg-moon-accent/80 text-moon-gold font-semibold text-xs uppercase tracking-widest border border-moon-gold/30 transition-all">
-                Ver datos bancarios
-            </button>
-        </section>
-
-        <!-- INSTAGRAM HASHTAG SECTION -->
-        <section class="glass-card rounded-3xl p-6 text-center border border-moon-gold/20 space-y-3">
-            <i class="fa-brands fa-instagram text-3xl text-moon-gold"></i>
-            <h2 class="font-cinzel text-sm text-slate-100 font-bold uppercase tracking-widest">Compartí tu foto</h2>
-            <p class="text-xs text-slate-400">Usa nuestro hashtag oficial en tus historias y publicaciones:</p>
-            <div class="inline-block px-4 py-2 rounded-xl bg-moon-dark border border-moon-gold/40 text-moon-gold font-bold text-sm tracking-wider">
-                #15FlorMoon
-            </div>
-            <div>
-                <a href="https://instagram.com" target="_blank" class="inline-flex items-center gap-2 text-xs text-slate-300 hover:text-moon-gold transition-colors pt-2">
-                    <span>Ver en Instagram</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                </a>
-            </div>
-        </section>
-
         <!-- FOOTER -->
         <footer class="text-center py-6 text-xs text-slate-500 space-y-2 border-t border-slate-800/80">
             <p class="font-cinzel uppercase tracking-widest text-[10px] text-slate-400">Florencia • Mis XV Años</p>
             <p class="text-[10px]">¡Nos vemos en la fiesta!</p>
         </footer>
-
     </main>
 
     <!-- BACKGROUND AUDIO PLAYER -->
     <audio id="bg-audio" loop preload="auto">
-        <!-- Royalty-free ambient music track demo -->
         <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=cinematic-time-lapse-115672.mp3" type="audio/mpeg">
     </audio>
 
@@ -418,219 +311,24 @@
         <i id="audio-icon" class="fa-solid fa-volume-xmark text-lg"></i>
     </button>
 
-
-    <!-- MODALS SECTION -->
-
-    <!-- 1. RSVP MODAL -->
-    <div id="rsvp-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-moon-dark/80 backdrop-blur-md">
-        <div class="max-w-md w-full glass-card rounded-3xl p-6 border border-moon-gold/30 moon-glow relative overflow-y-auto max-h-[90vh]">
-            <button onclick="closeModal('rsvp-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-moon-gold text-lg">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <div class="text-center mb-6">
-                <div class="w-12 h-12 rounded-full bg-moon-gold/10 border border-moon-gold/30 mx-auto flex items-center justify-center text-moon-gold text-xl mb-2">
-                    <i class="fa-solid fa-envelope"></i>
-                </div>
-                <h3 class="font-cinzel text-lg text-slate-100 font-bold uppercase">Confirmar Asistencia</h3>
-            </div>
-
-            <form id="rsvp-form" onsubmit="submitRSVP(event)" class="space-y-4 text-xs">
-                <div>
-                    <label class="block text-slate-300 font-medium mb-1">Nombre Completo *</label>
-                    <input type="text" required placeholder="Tu nombre y apellido" class="w-full px-4 py-3 rounded-xl bg-moon-dark border border-slate-700 text-slate-100 focus:outline-none focus:border-moon-gold">
-                </div>
-
-                <div>
-                    <label class="block text-slate-300 font-medium mb-1">¿Asistirás? *</label>
-                    <select required class="w-full px-4 py-3 rounded-xl bg-moon-dark border border-slate-700 text-slate-100 focus:outline-none focus:border-moon-gold">
-                        <option value="si">¡Sí, ahí estaré!</option>
-                        <option value="no">Lamentablemente no puedo</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-slate-300 font-medium mb-1">Preferencia de Menú / Intolerancias</label>
-                    <select class="w-full px-4 py-3 rounded-xl bg-moon-dark border border-slate-700 text-slate-100 focus:outline-none focus:border-moon-gold">
-                        <option value="estandar">Menú Estándar</option>
-                        <option value="vegetariano">Vegetariano</option>
-                        <option value="vegano">Vegano</option>
-                        <option value="celiaco">Celíaco / TACC</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-slate-300 font-medium mb-1">Mensaje para Florencia</label>
-                    <textarea rows="3" placeholder="Escribe unas palabras..." class="w-full px-4 py-3 rounded-xl bg-moon-dark border border-slate-700 text-slate-100 focus:outline-none focus:border-moon-gold"></textarea>
-                </div>
-
-                <button type="submit" class="w-full py-3 px-6 rounded-full gold-bg-gradient text-moon-dark font-bold text-xs uppercase tracking-widest shadow-lg">
-                    Enviar Confirmación
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- 2. MUSIC SUGGESTION MODAL -->
-    <div id="music-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-moon-dark/80 backdrop-blur-md">
-        <div class="max-w-md w-full glass-card rounded-3xl p-6 border border-moon-gold/30 relative">
-            <button onclick="closeModal('music-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-moon-gold text-lg">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <div class="text-center mb-6">
-                <i class="fa-solid fa-compact-disc text-3xl text-moon-gold mb-2 animate-spin-slow"></i>
-                <h3 class="font-cinzel text-base text-slate-100 font-bold uppercase">Sugerir Canción</h3>
-                <p class="text-xs text-slate-400 mt-1">¿Qué tema te gustaría escuchar para bailar?</p>
-            </div>
-
-            <form onsubmit="submitMusic(event)" class="space-y-4 text-xs">
-                <div>
-                    <label class="block text-slate-300 font-medium mb-1">Canción y Artista *</label>
-                    <input type="text" required placeholder="Ej: Dua Lipa - Levitating" class="w-full px-4 py-3 rounded-xl bg-moon-dark border border-slate-700 text-slate-100 focus:outline-none focus:border-moon-gold">
-                </div>
-                <div>
-                    <label class="block text-slate-300 font-medium mb-1">Tu Nombre</label>
-                    <input type="text" placeholder="Tu nombre" class="w-full px-4 py-3 rounded-xl bg-moon-dark border border-slate-700 text-slate-100 focus:outline-none focus:border-moon-gold">
-                </div>
-                <button type="submit" class="w-full py-3 px-6 rounded-full gold-bg-gradient text-moon-dark font-bold text-xs uppercase tracking-widest">
-                    Enviar Sugerencia
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- 3. DRESS CODE MODAL -->
-    <div id="dresscode-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-moon-dark/80 backdrop-blur-md">
-        <div class="max-w-md w-full glass-card rounded-3xl p-6 border border-moon-gold/30 text-center relative">
-            <button onclick="closeModal('dresscode-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-moon-gold text-lg">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <i class="fa-solid fa-user-tie text-3xl text-moon-gold mb-3"></i>
-            <h3 class="font-cinzel text-lg text-slate-100 font-bold uppercase mb-2">Dress Code</h3>
-            <p class="text-xs text-moon-gold font-semibold uppercase tracking-widest mb-4">Elegante / Vestimenta Formal</p>
-
-            <div class="bg-moon-dark/60 rounded-2xl p-4 border border-slate-800 text-left text-xs text-slate-300 space-y-2 mb-4">
-                <p><i class="fa-solid fa-check text-moon-gold mr-2"></i><strong>Mujeres:</strong> Vestido largo o cocktail formal.</p>
-                <p><i class="fa-solid fa-check text-moon-gold mr-2"></i><strong>Hombres:</strong> Traje elegante o ambo con camisa.</p>
-                <p class="text-slate-400 text-[11px] pt-2 border-t border-slate-800">
-                    <i class="fa-solid fa-triangle-exclamation text-amber-400 mr-1"></i> Por favor reservar los colores blanco y dorado exclusivo para la agasajada.
-                </p>
-            </div>
-
-            <button onclick="closeModal('dresscode-modal')" class="py-2.5 px-6 rounded-full bg-moon-accent text-slate-200 text-xs uppercase font-semibold">Entendido</button>
-        </div>
-    </div>
-
-    <!-- 4. TIPS & INFO MODAL -->
-    <div id="tips-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-moon-dark/80 backdrop-blur-md">
-        <div class="max-w-md w-full glass-card rounded-3xl p-6 border border-moon-gold/30 text-center relative">
-            <button onclick="closeModal('tips-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-moon-gold text-lg">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <i class="fa-solid fa-circle-info text-3xl text-moon-gold mb-3"></i>
-            <h3 class="font-cinzel text-lg text-slate-100 font-bold uppercase mb-4">Tips e Información</h3>
-
-            <div class="text-left text-xs text-slate-300 space-y-3 mb-6">
-                <div class="flex items-start gap-3 bg-moon-dark/50 p-3 rounded-xl border border-slate-800">
-                    <i class="fa-solid fa-clock text-moon-gold mt-0.5"></i>
-                    <div>
-                        <p class="font-semibold text-slate-200">Puntualidad</p>
-                        <p class="text-[11px] text-slate-400">Agradecemos llegar 15 minutos antes del inicio recepción (20:15 hs).</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-3 bg-moon-dark/50 p-3 rounded-xl border border-slate-800">
-                    <i class="fa-solid fa-square-parking text-moon-gold mt-0.5"></i>
-                    <div>
-                        <p class="font-semibold text-slate-200">Estacionamiento</p>
-                        <p class="text-[11px] text-slate-400">El salón cuenta con estacionamiento privado y seguridad.</p>
-                    </div>
-                </div>
-            </div>
-
-            <button onclick="closeModal('tips-modal')" class="py-2.5 px-6 rounded-full bg-moon-accent text-slate-200 text-xs uppercase font-semibold">Cerrar</button>
-        </div>
-    </div>
-
-    <!-- 5. GIFT DETAILS MODAL -->
-    <div id="gift-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-moon-dark/80 backdrop-blur-md">
-        <div class="max-w-md w-full glass-card rounded-3xl p-6 border border-moon-gold/30 text-center relative">
-            <button onclick="closeModal('gift-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-moon-gold text-lg">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <i class="fa-solid fa-building-columns text-3xl text-moon-gold mb-2"></i>
-            <h3 class="font-cinzel text-lg text-slate-100 font-bold uppercase mb-4">Datos Bancarios</h3>
-
-            <div class="bg-moon-dark/80 rounded-2xl p-4 border border-slate-800 text-left text-xs space-y-3 mb-4">
-                <div>
-                    <span class="text-slate-400 block text-[10px] uppercase">Titular:</span>
-                    <span class="font-semibold text-slate-200">Florencia González</span>
-                </div>
-                <div>
-                    <span class="text-slate-400 block text-[10px] uppercase">Banco / Billetera:</span>
-                    <span class="font-semibold text-slate-200">Mercado Pago / Banco Nación</span>
-                </div>
-                <div class="flex justify-between items-center pt-2 border-t border-slate-800">
-                    <div>
-                        <span class="text-slate-400 block text-[10px] uppercase">Alias:</span>
-                        <span id="alias-text" class="font-bold text-moon-gold">FLOR.MIS15.MOON</span>
-                    </div>
-                    <button onclick="copyToClipboard('FLOR.MIS15.MOON', 'Alias copiado al portapapeles')" class="px-3 py-1.5 rounded-lg bg-moon-accent hover:bg-moon-gold/20 text-moon-gold text-[11px] border border-moon-gold/30 transition-all">
-                        <i class="fa-regular fa-copy"></i> Copiar
-                    </button>
-                </div>
-                <div class="flex justify-between items-center pt-2 border-t border-slate-800">
-                    <div>
-                        <span class="text-slate-400 block text-[10px] uppercase">CBU:</span>
-                        <span id="cbu-text" class="font-mono text-slate-300 text-[11px]">0000003100012345678901</span>
-                    </div>
-                    <button onclick="copyToClipboard('0000003100012345678901', 'CBU copiado al portapapeles')" class="px-3 py-1.5 rounded-lg bg-moon-accent hover:bg-moon-gold/20 text-moon-gold text-[11px] border border-moon-gold/30 transition-all">
-                        <i class="fa-regular fa-copy"></i> Copiar
-                    </button>
-                </div>
-            </div>
-
-            <button onclick="closeModal('gift-modal')" class="py-2.5 px-6 rounded-full bg-moon-accent text-slate-200 text-xs uppercase font-semibold">Cerrar</button>
-        </div>
-    </div>
-
-    <!-- 6. LIGHTBOX MODAL FOR GALLERY -->
-    <div id="lightbox-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-moon-dark/95 backdrop-blur-md" onclick="closeLightbox()">
-        <button class="absolute top-4 right-4 text-slate-200 hover:text-moon-gold text-2xl">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-        <img id="lightbox-img" src="" alt="Ampliada" class="max-w-full max-h-[85vh] rounded-2xl border border-moon-gold/30 object-contain shadow-2xl">
-    </div>
-
-    <!-- TOAST NOTIFICATION CONTAINER -->
-    <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 hidden px-6 py-3 rounded-full bg-moon-card border border-moon-gold/50 text-moon-gold text-xs font-semibold shadow-2xl transition-all duration-300 flex items-center gap-2">
-        <i class="fa-solid fa-circle-check"></i> <span id="toast-msg">Mensaje enviado</span>
-    </div>
-
-
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- BASIC JS SCRIPT -->
     <script>
-        // 1. Audio Background Controller
         const audio = document.getElementById('bg-audio');
         const audioIcon = document.getElementById('audio-icon');
         let isPlaying = false;
 
-        function enterSite(playMusic) {
-            document.getElementById('welcome-modal').classList.add('opacity-0');
+        function enterSite(withMusic) {
+            const modal = document.getElementById('welcome-modal');
+            modal.style.opacity = '0';
             setTimeout(() => {
-                document.getElementById('welcome-modal').classList.add('hidden');
+                modal.style.display = 'none';
             }, 700);
 
-            if (playMusic) {
+            if (withMusic) {
                 audio.play().then(() => {
                     isPlaying = true;
-                    updateAudioUI();
-                }).catch(err => {
-                    console.log("Audio autoplay restricted:", err);
-                });
+                    audioIcon.className = "fa-solid fa-volume-high text-lg";
+                }).catch(e => console.log("Audio play blocked", e));
             }
         }
 
@@ -638,49 +336,15 @@
             if (isPlaying) {
                 audio.pause();
                 isPlaying = false;
+                audioIcon.className = "fa-solid fa-volume-xmark text-lg";
             } else {
-                audio.play();
-                isPlaying = true;
-            }
-            updateAudioUI();
-        }
-
-        function updateAudioUI() {
-            if (isPlaying) {
-                audioIcon.className = "fa-solid fa-volume-high text-lg text-moon-gold animate-pulse";
-            } else {
-                audioIcon.className = "fa-solid fa-volume-xmark text-lg text-slate-400";
+                audio.play().then(() => {
+                    isPlaying = true;
+                    audioIcon.className = "fa-solid fa-volume-high text-lg";
+                });
             }
         }
 
-        // 2. Countdown Timer Logic
-        // Target Date: June 15, 2026 20:30:00
-        const eventDate = new Date("2026-06-15T20:30:00").getTime();
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = eventDate - now;
-
-            if (distance < 0) {
-                document.getElementById("countdown").innerHTML = "<div class='col-span-4 text-moon-gold font-cinzel text-lg'>¡Llegó el gran día!</div>";
-                return;
-            }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-        }
-
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // 3. Modal Handlers
         function openModal(id) {
             document.getElementById(id).classList.remove('hidden');
         }
@@ -689,62 +353,19 @@
             document.getElementById(id).classList.add('hidden');
         }
 
-        // 4. Lightbox Gallery Handler
-        function openLightbox(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox-modal').classList.remove('hidden');
-        }
+        // Countdown Timer Logic
+        const eventDate = new Date("June 15, 2026 20:30:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
 
-        function closeLightbox() {
-            document.getElementById('lightbox-modal').classList.add('hidden');
-        }
-
-        // 5. Toast Notification System
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-msg').innerText = message;
-            toast.classList.remove('hidden');
-            setTimeout(() => {
-                toast.classList.add('hidden');
-            }, 3000);
-        }
-
-        // 6. Copy to Clipboard
-        function copyToClipboard(text, successMsg) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-            showToast(successMsg);
-        }
-
-        // 7. Form Submissions
-        function submitRSVP(e) {
-            e.preventDefault();
-            closeModal('rsvp-modal');
-            showToast('¡Gracias por confirmar tu asistencia!');
-            document.getElementById('rsvp-form').reset();
-        }
-
-        function submitMusic(e) {
-            e.preventDefault();
-            closeModal('music-modal');
-            showToast('¡Sugerencia de canción recibida!');
-        }
-
-        // 8. Add to Calendar Handler (.ics / Google Calendar link)
-        function addToCalendar() {
-            const title = encodeURIComponent("Mis 15 Años - Florencia");
-            const details = encodeURIComponent("Celebración de los 15 Años de Florencia en Salón Palacio Lunar.");
-            const location = encodeURIComponent("Av. Libertador 4500, Buenos Aires");
-            const startDate = "20260615T233000Z";
-            const endDate = "20260616T080000Z";
-
-            const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${details}&location=${location}`;
-            window.open(googleCalendarUrl, '_blank');
-        }
+            if (distance > 0) {
+                document.getElementById("days").innerText = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                document.getElementById("hours").innerText = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                document.getElementById("minutes").innerText = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60 * 60 / 60))).padStart(2, '0');
+                document.getElementById("seconds").innerText = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+            }
+        }, 1000);
     </script>
 </body>
 </html>
